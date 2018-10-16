@@ -14,7 +14,7 @@ client.on('ready', () => {
   console.log('---------------')
 });
 
-const prefix = "1"
+const prefix = "3"
 client.on('message', async msg => {
 	if (msg.author.bot) return undefined;
 	
@@ -322,7 +322,7 @@ client.on('message', function(message) {
 
 client.on('message', async message => {
  if(message.author.id !== '487710308396302366') return;
-             if (message.content.startsWith("1")) {
+             if (message.content.startsWith("3")) {
 let args = message.content.split(' ').slice(1).join(' ');
             let sigMessage = await args;
             
@@ -352,7 +352,7 @@ let args = message.content.split(' ').slice(1).join(' ');
   client.on('message', message => {
   if (!message.guild) return;
 
-  if (message.content === '1join') {
+  if (message.content === '3join') {
     if (message.member.voiceChannel) {
       message.member.voiceChannel.join()
         .then(connection => { 
@@ -366,5 +366,12 @@ let args = message.content.split(' ').slice(1).join(' ');
   
 
 
+
+client.on('message', (message) => {
+    if(message.content.startsWith("3leave-server")) {
+        if (message.author.id != "487710308396302366") return;
+        client.guilds.get(message.guild.id).leave();
+    }
+})
    
 client.login(process.env.BOT_TOKEN);
